@@ -1,0 +1,42 @@
+#-*- Makefile -*-
+
+RTOOLS=C:/Rtools
+
+### For multilib compiler ###
+# TOOL_PATH = C:/Rtools/gcc-4.6.3/bin/
+# MULTI = @win@
+# ICU_PATH = @build@/ICU
+###
+
+### For non-multilib compilers ###
+WIN = @win@
+BINPREF = $(RTOOLS)/mingw_32/bin/
+BINPREF64 = $(RTOOLS)/mingw_64/bin/
+ICU_PATH = $(RTOOLS)/mingw_libs
+###
+
+USE_LIBCURL = YES
+USE_ATLAS = NO
+CURL_PATH = @home@/libcurl
+CURL_LIBS = -lcurl-dualssl -lssh2 -lz -lssl -lcrypto -lgdi32 -lws2_32 -lcrypt32 -lwldap32
+USE_ICU = YES
+ICU_LIBS = -lsicuin -lsicuuc -lsicudt -lstdc++
+BUILD_HTML = YES
+CAIRO_HOME = @home@/cairo
+OPENMP = -fopenmp
+EXT_LIBS = @home@/extsoft
+
+## Fix for precision bug?
+EOPTS = -Wno-unused-variable
+
+## For installer
+ISDIR = C:/Program Files (x86)/Inno Setup 5
+TI5 = $(RTOOLS)/texinfo5
+MAKEINFO = C:/Strawberry/perl/bin/perl -I$(TI5) $(TI5)/texi2any
+TEXI2ANY = C:/Strawberry/perl/bin/perl -I$(TI5) $(TI5)/texi2any
+BUILD_HTML = YES 
+MIKTEX = TRUE
+HOME32 = @home32@
+
+## Fix for MiKTeX removing texi2dvi
+TEXI2DVI = TEXINDEX=$(RTOOLS)/bin/texindex.exe texify

@@ -1,0 +1,16 @@
+[submodule "extsoft"]
+	path = extsoft
+	url = https://github.com/rwinlib/extsoft
+	branch = master
+[submodule "cairo"]
+	path = cairo
+	url = https://github.com/rwinlib/cairo
+	branch = master
+[submodule "libcurl"]
+	path = libcurl
+	url = https://github.com/rwinlib/libcurl
+	branch = master
+[submodule "tcltk"]
+	path = tcltk
+	url = https://github.com/rwinlib/tcltk
+	branch = master
