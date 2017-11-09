@@ -70,22 +70,22 @@ cd %R_HOME%/src/gnuwin32
 :: NOTE: you can do all of this at once with 'make distribution'
 
 :: Build R
-make all recommended vignettes
-make cairodevices
+make all recommended vignettes > %BUILDDIR%/build%WIN%.log 2>&1
+make cairodevices >> %BUILDDIR%/build%WIN%.log 2>&1
 
 :: Run some checks
-make check
-make check-recommended
+make check > %BUILDDIR%/check%WIN%.log 2>&1
+make check-recommended >> %BUILDDIR%/check%WIN%.log 2>&1
 
 :: Requires pdflatex (e.g. miktex)
-make manuals
+make manuals > %BUILDDIR%/manuals%WIN%.log 2>&1
 
 :: Add compiler to the PATH
 cat %SOURCEDIR%/files/profile.txt >> %R_HOME%/etc/Rprofile.site
 
 :: Build the installer
 IF "%WIN%"=="64" (
-make rinstaller
+make rinstaller > %BUILDDIR%/installer.log 2>&1
 cp %R_HOME%/src/gnuwin32/installer/*.exe %BUILDDIR%/
 )
 

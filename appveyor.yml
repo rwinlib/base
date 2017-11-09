@@ -15,7 +15,7 @@ build_script:
   - r-devel.bat
 
 artifacts:
-  - path: '*.log'
+  - path: '..\BUILD\*.log'
     name: Logs
 
 cache:
