@@ -7,7 +7,7 @@
 Building R on Windows requires the following tools:
 
  - Latest [Rtools](https://cran.r-project.org/bin/windows/Rtools/) compiler toolchain
- - Recent [MiKTeX](https://miktex.org/) + packages `fancyvrb`, `inconsolata`, `epsf`, `mptopdf`, `url`, `fullpage`
+ - Recent [MiKTeX](https://miktex.org/) + packages `fancyvrb`, `inconsolata`, `epsf`, `mptopdf`, `url`
  - [Inno Setup](http://www.jrsoftware.org/isdl.php) to build the installer
  - Perl such as [Strawberry Perl](http://strawberryperl.com/)
 
