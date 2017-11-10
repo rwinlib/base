@@ -14,12 +14,16 @@ build_script:
   - ps: Invoke-WebRequest https://stat.ethz.ch/R/daily/R-devel.tar.gz -OutFile "R-devel.tar.gz"
   - r-devel.bat
 
-artifacts:
-  - path: '..\BUILD\*.log'
-    name: Logs
-
 cache:
   - C:\miktex
+
+on_success:
+  - 7z a installer.zip ..\BUILD\*.exe
+  - appveyor PushArtifact installer.zip
+
+on_finish:
+  - 7z a logs.zip ..\BUILD\*.log
+  - appveyor PushArtifact logs.zip
 
 #on_finish:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
