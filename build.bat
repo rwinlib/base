@@ -57,9 +57,9 @@ sed -i "s/-lcairo -lpixman-1 -lpng -lz/-lcairo -lfontconfig -lfreetype -lpng -lp
 sed -i "1s/^\xEF\xBB\xBF//" %R_HOME%/src/gnuwin32/installer/CustomMsg.iss
 
 :: Mark output as experimental
-sed -i "s/Under development (unstable)/EXPERIMENTAL/" %R_HOME%/VERSION
-echo built with gcc 4.9.3 > %R_HOME%/VERSION-NICK
-echo cat('R-experimental') > %R_HOME%/src/gnuwin32/fixed/rwver.R
+::sed -i "s/Under development (unstable)/EXPERIMENTAL/" %R_HOME%/VERSION
+::echo cat('R-experimental') > %R_HOME%/src/gnuwin32/fixed/rwver.R
+sed -i "s/Unsuffered Consequences/blame jeroen/" %R_HOME%/VERSION-NICK
 
 :: Switch dir
 cd %R_HOME%/src/gnuwin32

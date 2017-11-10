@@ -1,4 +1,8 @@
-# DO NOT CHANGE the "init" and "install" sections below
+environment:
+  matrix:
+    - source: https://stat.ethz.ch/R/daily/R-devel.tar.gz
+    - source: https://stat.ethz.ch/R/daily/R-patched.tar.gz
+    - source: https://cran.r-project.org/src/base/R-3/R-3.4.2.tar.gz
 
 install:
   - ps: |
@@ -11,8 +15,9 @@ install:
   - git submodule update --init
 
 build_script:
-  - ps: Invoke-WebRequest https://stat.ethz.ch/R/daily/R-devel.tar.gz -OutFile "R-devel.tar.gz"
-  - r-devel.bat
+  - ps: Invoke-WebRequest "$env:source" -OutFile "R-source.tar.gz"
+  - build.bat R-source 32
+  - build.bat R-source 64
 
 cache:
   - C:\miktex
@@ -24,6 +29,3 @@ on_success:
 on_finish:
   - 7z a logs.zip ..\BUILD\*.log
   - appveyor PushArtifact logs.zip
-
-#on_finish:
-#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
