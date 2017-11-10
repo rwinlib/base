@@ -72,10 +72,14 @@ cd %R_HOME%/src/gnuwin32
 :: Build R
 IF "%WIN%"=="32" (
 make 32-bit > %BUILDDIR%/32bit.log 2>&1
+if %errorlevel% neq 0 exit /b %errorlevel%
 ) ELSE (
 make distribution > %BUILDDIR%/distribution.log 2>&1
+if %errorlevel% neq 0 exit /b %errorlevel%
 make check-all > %BUILDDIR%/check.log 2>&1
+if %errorlevel% neq 0 exit /b %errorlevel%
 cp %R_HOME%/src/gnuwin32/installer/*.exe %BUILDDIR%/
+if %errorlevel% neq 0 exit /b %errorlevel%
 )
 
 :: Done
