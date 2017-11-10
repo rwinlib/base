@@ -23,11 +23,12 @@ build_script:
   - build.bat %version% 64
 
 cache:
-  - C:\miktex
+#  - C:\miktex
 
 on_success:
   - 7z a installer.zip ..\BUILD\*.exe
-  - appveyor PushArtifact installer.zip
+  - appveyor PushArtifact ..\BUILD\*.exe
+  - type ..\BUILD\check.log
 
 on_finish:
   - 7z a logs.zip ..\BUILD\*.log

@@ -59,7 +59,10 @@ sed -i "1s/^\xEF\xBB\xBF//" %R_HOME%/src/gnuwin32/installer/CustomMsg.iss
 :: Mark output as experimental
 ::sed -i "s/Under development (unstable)/EXPERIMENTAL/" %R_HOME%/VERSION
 ::echo cat('R-experimental') > %R_HOME%/src/gnuwin32/fixed/rwver.R
-sed -i "s/Unsuffered Consequences/blame jeroen/" %R_HOME%/VERSION-NICK
+sed -i "s/Unsuffered Consequences/Blame Jeroen/" %R_HOME%/VERSION-NICK
+
+:: Add rtools 'make' to the user path
+echo 'PATH="C:\Rtools\bin;${PATH}"' > %R_HOME%/etc/Renviron.site
 
 :: Switch dir
 cd %R_HOME%/src/gnuwin32

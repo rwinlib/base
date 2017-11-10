@@ -26,8 +26,8 @@ CAIRO_HOME = @home@/cairo
 OPENMP = -fopenmp
 EXT_LIBS = @home@/extsoft
 
-## Fix for precision bug?
-EOPTS = -Wno-unused-variable
+## Ignore pedantic warnings that clutter logs
+EOPTS = -Wno-unused-variable -Wno-unused-function -Wno-unused-function
 
 ## For installer
 ISDIR = C:/Program Files (x86)/Inno Setup 5

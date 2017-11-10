@@ -208,6 +208,7 @@ Function InstallMiktex {
   mpm --admin --install=epsf
   mpm --admin --install=mptopdf
   mpm --admin --install=url
+  mpm --admin --install=fullpage
 
   # Enable auto-install, just in case
   initexmf --admin --enable-installer
