@@ -27,7 +27,7 @@ OPENMP = -fopenmp
 EXT_LIBS = @home@/extsoft
 
 ## Ignore pedantic warnings that clutter logs
-EOPTS = -Wno-unused-variable -Wno-unused-function -Wno-unused-function
+EOPTS = -Wno-unused-variable -Wno-unused-function -Wno-unused-but-set-variable
 
 ## For installer
 ISDIR = C:/Program Files (x86)/Inno Setup 5
