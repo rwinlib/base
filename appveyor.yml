@@ -27,7 +27,7 @@ cache:
 
 on_success:
   - 7z a installer.zip ..\BUILD\*.exe
-  - appveyor PushArtifact ..\BUILD\*.exe
+  - appveyor PushArtifact installer.zip
   - type ..\BUILD\check.log
 
 on_finish:
