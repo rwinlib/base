@@ -86,9 +86,11 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 
 :: Copy files to ship in the distribution
 cp %R_HOME%/SVN-REVISION %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/installer/*.exe %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/*.%R_VERSION%.html %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/*.exe %BUILDDIR%/
 cp %R_HOME%/src/gnuwin32/cran/md5sum.txt %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/NEWS.%R_VERSION%.html %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/CHANGES.%R_VERSION%.html %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/README.%R_VERSION% %BUILDDIR%/
 
 IF "%R_VERSION%"=="R-devel" (
 cp %R_HOME%/src/gnuwin32/cran/rdevel.html %BUILDDIR%/

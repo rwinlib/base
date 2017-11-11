@@ -23,10 +23,10 @@ build_script:
   - build.bat %version% 64
 
 cache:
-#  - C:\miktex
+  - C:\miktex
 
 on_success:
-  - 7z a %version%-win.zip ..\BUILD\*.exe ..\BUILD\*.log ..\BUILD\*.html ..\BUILD\md5sum.txt ..\BUILD\SVN-REVISION
+  - 7z a %version%-win.zip ..\BUILD\*.exe ..\BUILD\*.log ..\BUILD\*.html ..\BUILD\md5sum.txt ..\BUILD\SVN-REVISION ..\BUILD\README.*
   - appveyor PushArtifact %version%-win.zip
   - type ..\BUILD\check.log
 
