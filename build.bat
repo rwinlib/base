@@ -62,7 +62,7 @@ sed -i "1s/^\xEF\xBB\xBF//" %R_HOME%/src/gnuwin32/installer/CustomMsg.iss
 sed -i "s/Unsuffered Consequences/Blame Jeroen/" %R_HOME%/VERSION-NICK
 
 :: Add rtools 'make' to the user path
-echo 'PATH="C:\Rtools\bin;${PATH}"' > %R_HOME%/etc/Renviron.site
+echo PATH="C:\Rtools\bin;${PATH}" > %R_HOME%/etc/Renviron.site
 
 :: Switch dir
 cd %R_HOME%/src/gnuwin32
@@ -72,7 +72,7 @@ cd %R_HOME%/src/gnuwin32
 
 :: Build 32bit R version only
 IF "%WIN%"=="32" (
-make 32-bit > %BUILDDIR%/32bit.log 2>&1
+make 32-bit > %BUILDDIR%/32bit.log 2>&1 && cd %SOURCEDIR%
 exit /b %errorlevel%
 )
 
