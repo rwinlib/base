@@ -26,8 +26,8 @@ cache:
 #  - C:\miktex
 
 on_success:
-  - 7z a installer.zip ..\BUILD\*.exe
-  - appveyor PushArtifact installer.zip
+  - 7z a %version%-win.zip ..\BUILD\*.exe ..\BUILD\*.log ..\BUILD\*.html ..\BUILD\md5sum.txt ..\BUILD\SVN-REVISION
+  - appveyor PushArtifact %version%-win.zip
   - type ..\BUILD\check.log
 
 on_finish:

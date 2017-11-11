@@ -70,19 +70,36 @@ cd %R_HOME%/src/gnuwin32
 :: Download 'extsoft' directory
 :: make rsync-extsoft
 
-:: NOTE: you can do all of this at once with 'make distribution'
-
-:: Build R
+:: Build 32bit R version only
 IF "%WIN%"=="32" (
 make 32-bit > %BUILDDIR%/32bit.log 2>&1
-if %errorlevel% neq 0 exit /b %errorlevel%
-) ELSE (
+exit /b %errorlevel%
+)
+
+:: Build 64bit version + installer
 make distribution > %BUILDDIR%/distribution.log 2>&1
 if %errorlevel% neq 0 exit /b %errorlevel%
+
 make check-all > %BUILDDIR%/check.log 2>&1
 if %errorlevel% neq 0 exit /b %errorlevel%
+
+:: Copy files to ship in the distribution
+cp %R_HOME%/SVN-REVISION %BUILDDIR%/
 cp %R_HOME%/src/gnuwin32/installer/*.exe %BUILDDIR%/
-if %errorlevel% neq 0 exit /b %errorlevel%
+cp %R_HOME%/src/gnuwin32/cran/*.%R_VERSION%.html %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/md5sum.txt %BUILDDIR%/
+
+IF "%R_VERSION%"=="R-devel" (
+cp %R_HOME%/src/gnuwin32/cran/rdevel.html %BUILDDIR%/
+) ELSE IF "%R_VERSION%"=="R-patched" (
+cp %R_HOME%/src/gnuwin32/cran/rpatched.html %BUILDDIR%/
+) ELSE IF "%R_VERSION:~0,3%"=="R-3" (
+cp %R_HOME%/src/gnuwin32/cran/index.html %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/rw-FAQ.html %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/release.html %BUILDDIR%/
+) ELSE (
+echo "Unknown build type: %R_VERSION%"
+exit /b 1
 )
 
 :: Done
