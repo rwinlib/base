@@ -63,6 +63,7 @@ sed -i "s/Unsuffered Consequences/Blame Jeroen/" %R_HOME%/VERSION-NICK
 
 :: Add rtools 'make' to the user path
 echo PATH="C:\Rtools\bin;${PATH}" > %R_HOME%/etc/Renviron.site
+sed -i "s/ETC_FILES = Rprofile.site/ETC_FILES = Renviron.site Rprofile.site/" %R_HOME%/src/gnuwin32/installer/Makefile
 
 :: Switch dir
 cd %R_HOME%/src/gnuwin32
