@@ -84,14 +84,19 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 make check-all > %BUILDDIR%/check.log 2>&1
 if %errorlevel% neq 0 exit /b %errorlevel%
 
+:: Get the actual version name
+call %R_HOME%\src\gnuwin32\cran\target.cmd
+
 :: Copy files to ship in the distribution
 cp %R_HOME%/SVN-REVISION %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/*.exe %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/%target%-win.exe %BUILDDIR%/
 cp %R_HOME%/src/gnuwin32/cran/md5sum.txt %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/NEWS.%R_VERSION%.html %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/CHANGES.%R_VERSION%.html %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/README.%R_VERSION% %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/NEWS.%target%.html %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/CHANGES.%target%.html %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/README.%target% %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/target.cmd %BUILDDIR%/
 
+:: TODO: use %target% instead of %R_VERSION%
 IF "%R_VERSION%"=="R-devel" (
 cp %R_HOME%/src/gnuwin32/cran/rdevel.html %BUILDDIR%/
 ) ELSE IF "%R_VERSION%"=="R-patched" (
