@@ -1,11 +1,8 @@
 environment:
   matrix:
     - source: https://stat.ethz.ch/R/daily/R-devel.tar.gz
-      version: R-devel
     - source: https://stat.ethz.ch/R/daily/R-patched.tar.gz
-      version: R-patched
     - source: https://cran.r-project.org/src/base/R-latest.tar.gz
-      version: R-release
 
 install:
   - ps: |
@@ -19,15 +16,15 @@ install:
 
 build_script:
   - ps: Invoke-WebRequest "${env:source}" -OutFile "R-source.tar.gz"
-  - build.bat R-source.tar.gz 32
-  - build.bat R-source.tar.gz 64
+  - .\scripts\build.bat R-source.tar.gz 32
+  - .\scripts\build.bat R-source.tar.gz 64
 
 cache:
   - C:\miktex
 
 on_success:
-  - 7z a %version%-win.zip ..\BUILD\*.exe ..\BUILD\*.log ..\BUILD\*.html ..\BUILD\md5sum.txt ..\BUILD\SVN-REVISION ..\BUILD\README.*
-  - appveyor PushArtifact %version%-win.zip
+  - 7z a %target%-win.zip ..\BUILD\*.exe ..\BUILD\*.log ..\BUILD\*.html ..\BUILD\md5sum.txt ..\BUILD\SVN-REVISION ..\BUILD\README.*
+  - appveyor PushArtifact %target%-win.zip
   - type ..\BUILD\check.log
 
 on_finish:

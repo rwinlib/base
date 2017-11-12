@@ -9,9 +9,10 @@ echo File not found: %TARBALL% && exit /b 1
 set WIN=%2
 
 ::globals
-set SOURCEDIR=%~dp0
-mkdir ..\\BUILD
-cd ..\\BUILD
+set STARTDIR=%CD%
+set SOURCEDIR=%~dp0..
+mkdir ..\BUILD
+cd ..\BUILD
 set BUILDDIR=%CD%
 
 echo "SOURCEDIR: %SOURCEDIR%"
@@ -110,4 +111,4 @@ exit /b 1
 )
 
 :: Done
-cd %SOURCEDIR%
+cd %STARTDIR%
