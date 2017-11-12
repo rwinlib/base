@@ -1,2 +1,2 @@
-call build.bat R-3.4.2 32
-call build.bat R-3.4.2 64
+call build.bat R-latest.tar.gz 32
+call build.bat R-latest.tar.gz 64

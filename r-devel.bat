@@ -1,2 +1,2 @@
-call build.bat R-devel 32
-call build.bat R-devel 64
+call build.bat R-devel.tar.gz 32
+call build.bat R-devel.tar.gz 64

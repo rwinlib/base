@@ -4,8 +4,8 @@ environment:
       version: R-devel
     - source: https://stat.ethz.ch/R/daily/R-patched.tar.gz
       version: R-patched
-    - source: https://cran.r-project.org/src/base/R-3/R-3.4.2.tar.gz
-      version: R-3.4.2
+    - source: https://cran.r-project.org/src/base/R-latest.tar.gz
+      version: R-release
 
 install:
   - ps: |
@@ -18,9 +18,9 @@ install:
   - git submodule update --init
 
 build_script:
-  - ps: Invoke-WebRequest "${env:source}" -OutFile "${env:version}.tar.gz"
-  - build.bat %version% 32
-  - build.bat %version% 64
+  - ps: Invoke-WebRequest "${env:source}" -OutFile "R-source.tar.gz"
+  - build.bat R-source.tar.gz 32
+  - build.bat R-source.tar.gz 64
 
 cache:
   - C:\miktex

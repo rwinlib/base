@@ -1,2 +1,2 @@
-call build.bat R-patched 32
-call build.bat R-patched 64
+call build.bat R-patched.tar.gz 32
+call build.bat R-patched.tar.gz 64

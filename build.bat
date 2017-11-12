@@ -1,6 +1,8 @@
-::set R_VERSION=R-3.2.2
-::set R_VERSION=R-devel
-set R_VERSION=%1
+::set target=R-devel.tar.gz
+set TARBALL=%1
+if not exist "%TARBALL%" (
+echo File not found: %TARBALL% && exit /b 1
+)
 
 ::set WIN=32
 ::set WIN=64
@@ -11,29 +13,26 @@ set SOURCEDIR=%~dp0
 mkdir ..\\BUILD
 cd ..\\BUILD
 set BUILDDIR=%CD%
-COPY %SOURCEDIR%\%R_VERSION%.tar.gz %R_VERSION%.tar.gz
 
 echo "SOURCEDIR: %SOURCEDIR%"
 echo "BUILDDIR: %BUILDDIR%"
 
 :: Set name of target
-set R_NAME=%R_VERSION%-win%WIN%
-set R_HOME=%BUILDDIR%/%R_NAME%
+set VERSION=%TARBALL:~0,-7%
+set R_NAME=%VERSION%-win%WIN%
+set R_HOME=%BUILDDIR%\%R_NAME%
 set TMPDIR=%TEMP%
 
-:: For the multi-arch installer
-set HOME32=%BUILDDIR%/%R_VERSION%-win32
+:: For multilib build
+set HOME32=%BUILDDIR%\%VERSION%-win32
 
 :: Add rtools executables in path
 set PATH=C:\rtools\bin;%PATH%
 
-:: Clean up
-rm -f %R_HOME%/*.log
-rm -Rf %R_HOME%
-
 :: Copy sources
-tar -xf %R_VERSION%.tar.gz
-mv %R_VERSION% %R_NAME%
+rm -Rf %R_NAME%
+mkdir %R_NAME%
+tar -xf %SOURCEDIR%/%TARBALL% -C %R_NAME% --strip-components=1
 set XR_HOME=%R_HOME:\=/%
 set XHOME32=%HOME32:\=/%
 sed -e "s|@win@|%WIN%|" -e "s|@home@|%XR_HOME%|" -e "s|@home32@|%XHOME32%|" %SOURCEDIR%\files\MkRules.local.in > %R_HOME%/src/gnuwin32/MkRules.local
@@ -96,17 +95,17 @@ cp %R_HOME%/src/gnuwin32/cran/CHANGES.%target%.html %BUILDDIR%/
 cp %R_HOME%/src/gnuwin32/cran/README.%target% %BUILDDIR%/
 cp %R_HOME%/src/gnuwin32/cran/target.cmd %BUILDDIR%/
 
-:: TODO: use %target% instead of %R_VERSION%
-IF "%R_VERSION%"=="R-devel" (
+:: Infer release from target.cmd, for example "R-3.4.2-patched"
+IF "%target:~-5,5%"=="devel" (
 cp %R_HOME%/src/gnuwin32/cran/rdevel.html %BUILDDIR%/
-) ELSE IF "%R_VERSION%"=="R-patched" (
+) ELSE IF "%target:~-7,7%"=="patched" (
 cp %R_HOME%/src/gnuwin32/cran/rpatched.html %BUILDDIR%/
-) ELSE IF "%R_VERSION:~0,3%"=="R-3" (
+) ELSE IF "%target:~0,3%"=="R-3" (
 cp %R_HOME%/src/gnuwin32/cran/index.html %BUILDDIR%/
 cp %R_HOME%/src/gnuwin32/cran/rw-FAQ.html %BUILDDIR%/
 cp %R_HOME%/src/gnuwin32/cran/release.html %BUILDDIR%/
 ) ELSE (
-echo "Unknown build type: %R_VERSION%"
+echo "Unknown target type: %target%"
 exit /b 1
 )
 
