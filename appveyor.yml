@@ -1,7 +1,8 @@
 environment:
   matrix:
     - source: https://stat.ethz.ch/R/daily/R-devel.tar.gz
-    - source: https://stat.ethz.ch/R/daily/R-patched.tar.gz
+#    - source: https://stat.ethz.ch/R/daily/R-patched.tar.gz
+    - source: https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
     - source: https://cran.r-project.org/src/base/R-latest.tar.gz
 
 install:
@@ -23,10 +24,10 @@ cache:
   - C:\miktex
 
 on_success:
-  - 7z a %target%-win.zip ..\BUILD\*.exe ..\BUILD\*.log ..\BUILD\*.html ..\BUILD\md5sum.txt ..\BUILD\SVN-REVISION ..\BUILD\README.*
+  - 7z a %target%-win.zip %builddir%\*.exe %builddir%\*.log %builddir%\*.html %builddir%\md5sum.txt %builddir%\SVN-REVISION %builddir%\README.*
   - appveyor PushArtifact %target%-win.zip
-  - type ..\BUILD\check.log
+  - type %builddir%\check.log
 
 on_finish:
-  - 7z a logs.zip ..\BUILD\*.log
+  - 7z a logs.zip %builddir%\*.log
   - appveyor PushArtifact logs.zip
