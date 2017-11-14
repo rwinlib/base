@@ -15,8 +15,8 @@ mkdir ..\BUILD
 cd ..\BUILD
 set BUILDDIR=%CD%
 
-echo "SOURCEDIR: %SOURCEDIR%"
-echo "BUILDDIR: %BUILDDIR%"
+echo SOURCEDIR: %SOURCEDIR%
+echo BUILDDIR: %BUILDDIR%
 
 :: Set name of target
 set VERSION=%TARBALL:~0,-7%
@@ -75,11 +75,11 @@ cd %R_HOME%/src/gnuwin32
 IF "%WIN%"=="32" (
 make 32-bit > %BUILDDIR%/32bit.log 2>&1
 if %errorlevel% neq 0 (
-	echo "ERROR: 'make 32-bit' failure! Inspect 32bit.log for details."
+	echo ERROR: 'make 32-bit' failure! Inspect 32bit.log for details.
 	exit /b 2
 ) else (
 	cd %SOURCEDIR%
-	echo "make 32-bit complete!"
+	echo make 32-bit complete!
 	exit /b 0
 )
 )
@@ -87,14 +87,15 @@ if %errorlevel% neq 0 (
 :: Build 64bit version + installer
 make distribution > %BUILDDIR%/distribution.log 2>&1
 if %errorlevel% neq 0 (
-	echo "ERROR: 'make distribution' failure! Inspect distribution.log for details."
+	echo ERROR: 'make distribution' failure! Inspect distribution.log for details.
 	exit /b 2
 )
+echo make distribution complete!
 
 make check-all > %BUILDDIR%/check.log 2>&1
 if %errorlevel% neq 0 (
-	echo "ERROR: 'make check-all' failure! Inspect check.log for details."
-	type %BUILDDIR%/check.log
+	echo ERROR: 'make check-all' failure! Inspect check.log for details.
+	type %builddir%\check.log
 	exit /b 2
 )
 
