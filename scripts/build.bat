@@ -73,19 +73,37 @@ cd %R_HOME%/src/gnuwin32
 
 :: Build 32bit R version only
 IF "%WIN%"=="32" (
-make 32-bit > %BUILDDIR%/32bit.log 2>&1 && cd %SOURCEDIR%
-exit /b %errorlevel%
+make 32-bit > %BUILDDIR%/32bit.log 2>&1
+if %errorlevel% neq 0 (
+	echo "ERROR: 'make 32-bit' failure! Inspect 32bit.log for details."
+	exit /b 2
+) else (
+	cd %SOURCEDIR%
+	echo "make 32-bit complete!"
+	exit /b 0
+)
 )
 
 :: Build 64bit version + installer
 make distribution > %BUILDDIR%/distribution.log 2>&1
-if %errorlevel% neq 0 exit /b %errorlevel%
+if %errorlevel% neq 0 (
+	echo "ERROR: 'make distribution' failure! Inspect distribution.log for details."
+	exit /b 2
+)
 
 make check-all > %BUILDDIR%/check.log 2>&1
-if %errorlevel% neq 0 exit /b %errorlevel%
+if %errorlevel% neq 0 (
+	echo "ERROR: 'make check-all' failure! Inspect check.log for details."
+	type %BUILDDIR%/check.log
+	exit /b 2
+)
 
 :: Get the actual version name
 call %R_HOME%\src\gnuwin32\cran\target.cmd
+
+:: Get the SVN revision number
+set /p SVNSTRING=<%R_HOME%/SVN-REVISION
+set REVISION=%SVNSTRING:~10%
 
 :: Copy files to ship in the distribution
 cp %R_HOME%/SVN-REVISION %BUILDDIR%/

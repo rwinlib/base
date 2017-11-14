@@ -1,7 +1,7 @@
 environment:
   matrix:
     - source: https://cloud.r-project.org/src/base-prerelease/R-latest.tar.gz
-      upload: true    
+      upload: true
     - source: https://stat.ethz.ch/R/daily/R-devel.tar.gz
       upload: true
 #    - source: https://stat.ethz.ch/R/daily/R-patched.tar.gz      
@@ -39,13 +39,12 @@ on_finish:
 
 deploy:
   provider: FTP
+  protocol: ftps
   host: ftp.opencpu.org
   username: upload
   password:
     secure: u7Vv/A5W5RiRQ0sJ6QmKvN/g6h3J9y9ujuqZi0uDAAY=
+  folder: builds\$(target)\$(revision)
   application: "%target%-win.zip"
   on:
     upload: true
-
-cache:
-  - C:\miktex
