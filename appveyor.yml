@@ -1,12 +1,12 @@
 environment:
   matrix:
     - source: https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
-      upload: true
+      archive: r-patched
     - source: https://stat.ethz.ch/R/daily/R-devel.tar.gz
-      upload: true
+      archive: r-devel
 #    - source: https://stat.ethz.ch/R/daily/R-patched.tar.gz      
-#    - source: https://cloud.r-project.org/src/base/R-latest.tar.gz
-#      deploy: ftp
+    - source: https://cloud.r-project.org/src/base/R-latest.tar.gz
+      archive: r-release
 
 install:
   - ps: |
@@ -39,14 +39,11 @@ on_finish:
 
 deploy:
   provider: FTP
-  protocol: ftps
+  protocol: ftp
   host: ftp.opencpu.org
   username: upload
   password:
     secure: u7Vv/A5W5RiRQ0sJ6QmKvN/g6h3J9y9ujuqZi0uDAAY=
-  folder: /archive/$(target)/$(revision)
+  folder: /archive/$(archive)/$(revision)
   application: "%target%-win.zip"
-  on:
-    upload: true
-  beta: true
   debug: true
