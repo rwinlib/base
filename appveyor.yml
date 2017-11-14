@@ -1,9 +1,9 @@
 environment:
   matrix:
-    - source: https://stat.ethz.ch/R/daily/R-devel.tar.gz
-      deploy: ftp
     - source: https://cloud.r-project.org/src/base-prerelease/R-latest.tar.gz
-      deploy: ftp
+      upload: true    
+    - source: https://stat.ethz.ch/R/daily/R-devel.tar.gz
+      upload: true
 #    - source: https://stat.ethz.ch/R/daily/R-patched.tar.gz      
 #    - source: https://cloud.r-project.org/src/base/R-latest.tar.gz
 #      deploy: ftp
@@ -23,14 +23,29 @@ build_script:
   - .\scripts\build.bat R-source.tar.gz 32
   - .\scripts\build.bat R-source.tar.gz 64
 
-cache:
-  - C:\miktex
+after_build:
+  - 7z a %target%-win.zip %builddir%\*.exe %builddir%\*.log %builddir%\*.html %builddir%\md5sum.txt %builddir%\SVN-REVISION %builddir%\README.*
+
+artifacts:
+  - path: "%target%-win.zip"
+    name: Installer Bundle  
 
 on_success:
-  - 7z a %target%-win.zip %builddir%\*.exe %builddir%\*.log %builddir%\*.html %builddir%\md5sum.txt %builddir%\SVN-REVISION %builddir%\README.*
-  - appveyor PushArtifact %target%-win.zip
   - type %builddir%\check.log
 
 on_finish:
   - 7z a logs.zip %builddir%\*.log
   - appveyor PushArtifact logs.zip
+
+deploy:
+  provider: FTP
+  host: ftp.opencpu.org
+  username: upload
+  password:
+    secure: u7Vv/A5W5RiRQ0sJ6QmKvN/g6h3J9y9ujuqZi0uDAAY=
+  application: "%target%-win.zip"
+  on:
+    upload: true
+
+cache:
+  - C:\miktex
