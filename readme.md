@@ -2,7 +2,9 @@
 
 > Official repository for building R on Windows
 
-## Requirements
+This repository is used for daily builds on [appveyor](https://ci.appveyor.com/project/jeroen/base) which get deployed on the [ftp server](https://ftp.opencpu.org).
+
+## Local Requirements
 
 Building R on Windows requires the following tools:
 

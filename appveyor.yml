@@ -32,9 +32,6 @@ artifacts:
   - path: "%target%-win.zip"
     name: Installer Bundle
 
-on_success:
-  - type %builddir%\check.log
-
 on_finish:
   - 7z a logs.zip %builddir%\*.log
   - appveyor PushArtifact logs.zip

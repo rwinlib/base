@@ -107,9 +107,9 @@ set /p SVNSTRING=<%R_HOME%/SVN-REVISION
 set REVISION=%SVNSTRING:~10%
 
 :: Copy files to ship in the distribution
-cp %R_HOME%/SVN-REVISION %BUILDDIR%/SVN-REVISION.%target
+cp %R_HOME%/SVN-REVISION %BUILDDIR%/SVN-REVISION.%target%
 cp %R_HOME%/src/gnuwin32/cran/%target%-win.exe %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/md5sum.txt %BUILDDIR%/md5sum.txt.%target
+cp %R_HOME%/src/gnuwin32/cran/md5sum.txt %BUILDDIR%/md5sum.txt.%target%
 cp %R_HOME%/src/gnuwin32/cran/NEWS.%target%.html %BUILDDIR%/
 cp %R_HOME%/src/gnuwin32/cran/CHANGES.%target%.html %BUILDDIR%/
 cp %R_HOME%/src/gnuwin32/cran/README.%target% %BUILDDIR%/
