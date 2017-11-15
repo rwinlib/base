@@ -2,8 +2,10 @@ environment:
   matrix:
     - source: https://stat.ethz.ch/R/daily/R-devel.tar.gz
       archive: r-devel
+      cran: true
     - source: https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
       archive: r-patched
+      cran: true
 #    - source: https://stat.ethz.ch/R/daily/R-patched.tar.gz      
     - source: https://cran.r-project.org/src/base/R-latest.tar.gz
       archive: r-release
@@ -24,7 +26,7 @@ build_script:
   - .\scripts\build.bat R-source.tar.gz 64
 
 after_build:
-  - 7z a %target%-win.zip %builddir%\*.exe %builddir%\*.log %builddir%\*.html %builddir%\md5sum.txt %builddir%\SVN-REVISION %builddir%\README.*
+  - 7z a %target%-win.zip %builddir%\*.exe %builddir%\*.log %builddir%\*.html %builddir%\md5sum.txt.* %builddir%\SVN-REVISION.* %builddir%\README.*
 
 artifacts:
   - path: "%target%-win.zip"
@@ -47,4 +49,16 @@ deploy:
   folder: archive\$(archive)\$(revision)
   application: "%target%-win.zip"
   debug: true
-  beta: true
+
+deploy:
+  provider: FTP
+  protocol: ftps
+  host: ftp.opencpu.org
+  username: upload
+  password:
+    secure: u7Vv/A5W5RiRQ0sJ6QmKvN/g6h3J9y9ujuqZi0uDAAY=
+  folder: cran
+  application: "%target%-win.zip"
+  debug: true
+  on:
+    cran: true
