@@ -44,6 +44,7 @@ deploy:
   username: upload
   password:
     secure: u7Vv/A5W5RiRQ0sJ6QmKvN/g6h3J9y9ujuqZi0uDAAY=
-  folder: /archive/$(archive)/$(revision)
+  folder: archive\$(archive)\$(revision)
   application: "%target%-win.zip"
   debug: true
+  beta: true
