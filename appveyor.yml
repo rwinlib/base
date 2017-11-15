@@ -53,7 +53,7 @@ deploy:
     username: upload
     password:
       secure: u7Vv/A5W5RiRQ0sJ6QmKvN/g6h3J9y9ujuqZi0uDAAY=
-    folder: cran
+    folder: current
     application: "%target%-win.zip"
     debug: true
     on:
