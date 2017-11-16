@@ -37,24 +37,14 @@ on_finish:
   - appveyor PushArtifact logs.zip
 
 deploy:
-  - provider: FTP
-    protocol: sftp
-    host: ftp.opencpu.org
-    username: upload
-    password:
-      secure: u7Vv/A5W5RiRQ0sJ6QmKvN/g6h3J9y9ujuqZi0uDAAY=
-    folder: archive\$(archive)\$(revision)
-    application: "%target%-win.zip"
-    debug: true
+  - provider: Environment
+    name: ftp_archive
+    target: "%target%"
+    archive: "%archive%"
+    revision: "%revision%"
 
-  - provider: FTP
-    protocol: sftp
-    host: ftp.opencpu.org
-    username: upload
-    password:
-      secure: u7Vv/A5W5RiRQ0sJ6QmKvN/g6h3J9y9ujuqZi0uDAAY=
-    folder: current
-    application: "%target%-win.zip"
-    debug: true
+  - provider: Environment
+    name: ftp_current
+    target: "%target%"
     on:
       cran: true
