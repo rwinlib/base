@@ -71,9 +71,11 @@ cd %R_HOME%/src/gnuwin32
 :: Download 'extsoft' directory
 :: make rsync-extsoft
 
+set MAKE=make -j8
+
 :: Build 32bit R version only
 IF "%WIN%"=="32" (
-make 32-bit > %BUILDDIR%/32bit.log 2>&1
+%make% 32-bit > %BUILDDIR%/32bit.log 2>&1
 if %errorlevel% neq 0 (
 	echo ERROR: 'make 32-bit' failure! Inspect 32bit.log for details.
 	exit /b 2
@@ -85,14 +87,14 @@ if %errorlevel% neq 0 (
 )
 
 :: Build 64bit version + installer
-make distribution > %BUILDDIR%/distribution.log 2>&1
+%make% distribution > %BUILDDIR%/distribution.log 2>&1
 if %errorlevel% neq 0 (
 	echo ERROR: 'make distribution' failure! Inspect distribution.log for details.
 	exit /b 2
 )
 echo make distribution complete!
 
-make check-all > %BUILDDIR%/check.log 2>&1
+%make% check-all > %BUILDDIR%/check.log 2>&1
 if %errorlevel% neq 0 (
 	echo ERROR: 'make check-all' failure! Inspect check.log for details.
 	type %builddir%\check.log
