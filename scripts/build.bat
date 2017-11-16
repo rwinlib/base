@@ -86,6 +86,9 @@ if %errorlevel% neq 0 (
 )
 )
 
+
+set MAKE=make
+
 :: Build 64bit version + installer
 %make% distribution > %BUILDDIR%/distribution.log 2>&1
 if %errorlevel% neq 0 (
