@@ -26,7 +26,7 @@ build_script:
   - .\scripts\build.bat R-source.tar.gz 64
 
 after_build:
-  - 7z a %target%-win.zip %builddir%\*.exe %builddir%\*.log %builddir%\*.html %builddir%\md5sum.txt.* %builddir%\SVN-REVISION.* %builddir%\README.*
+  - 7z a %target%-win.zip %builddir%\*.exe %builddir%\*.log %builddir%\*.html %builddir%\md5sum.* %builddir%\SVN-REVISION.* %builddir%\README.*
 
 artifacts:
   - path: "%target%-win.zip"

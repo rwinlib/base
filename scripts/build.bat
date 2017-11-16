@@ -120,8 +120,10 @@ IF "%target:~-5,5%"=="devel" (
 cp %R_HOME%/src/gnuwin32/cran/rdevel.html %BUILDDIR%/
 ) ELSE IF "%target:~-7,7%"=="patched" (
 cp %R_HOME%/src/gnuwin32/cran/rpatched.html %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/rtest.html %BUILDDIR%/
 ) ELSE IF "%target:~0,3%"=="R-3" (
 cp %R_HOME%/src/gnuwin32/cran/index.html %BUILDDIR%/
+cp %R_HOME%/src/gnuwin32/cran/md5sum.txt %BUILDDIR%/
 cp %R_HOME%/src/gnuwin32/cran/rw-FAQ.html %BUILDDIR%/
 cp %R_HOME%/src/gnuwin32/cran/release.html %BUILDDIR%/
 ) ELSE (
