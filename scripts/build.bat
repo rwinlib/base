@@ -68,9 +68,9 @@ sed -i "1s|^\xEF\xBB\xBF||" installer/CustomMsg.iss
 :: Add 'make' to the user path
 sed -i "s|ETC_FILES = Rprofile.site|ETC_FILES = Renviron.site Rprofile.site|" installer/Makefile
 
-:: Backward compatible with CRAN but allow overriding LOCAL_SOFT at runtime
+:: Allow overriding LOCAL_SOFT variable at runtime
 set LOCAL_SOFT=%XR_HOME%/extsoft
-sed -i "s|LOCAL_SOFT =|LOCAL_SOFT ?= d:/Compiler/gcc-4.9.3/local330|" fixed/etc/Makeconf
+sed -i "s|LOCAL_SOFT =|LOCAL_SOFT ?= \$(R_USER)/R/\$(COMPILED_BY)|" fixed/etc/Makeconf
 
 :: Download 'extsoft' directory
 :: make rsync-extsoft
