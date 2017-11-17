@@ -53,20 +53,23 @@ xcopy /s "%SOURCEDIR%\cairo\include\cairo" "%R_HOME%\cairo\win64"
 
 sed -i "s/-lcairo -lpixman-1 -lpng -lz/-lcairo -lfontconfig -lfreetype -lpng -lpixman-1 -lexpat -lharfbuzz -lbz2 -lz/" %R_HOME%/src/library/grDevices/src/cairo/Makefile.win
 
-:: Remove BOM from this file
-sed -i "1s/^\xEF\xBB\xBF//" %R_HOME%/src/gnuwin32/installer/CustomMsg.iss
-
 :: Mark output as experimental
 ::sed -i "s/Under development (unstable)/EXPERIMENTAL/" %R_HOME%/VERSION
 ::echo cat('R-experimental') > %R_HOME%/src/gnuwin32/fixed/rwver.R
-sed -i "s/Unsuffered Consequences/Blame Jeroen/" %R_HOME%/VERSION-NICK
-
-:: Add rtools 'make' to the user path
+sed -i "s|Unsuffered Consequences|Blame Jeroen|" %R_HOME%/VERSION-NICK
 echo PATH="C:\Rtools\bin;${PATH}" > %R_HOME%/etc/Renviron.site
-sed -i "s/ETC_FILES = Rprofile.site/ETC_FILES = Renviron.site Rprofile.site/" %R_HOME%/src/gnuwin32/installer/Makefile
 
 :: Switch dir
 cd %R_HOME%/src/gnuwin32
+
+:: Remove BOM from this file
+sed -i "1s|^\xEF\xBB\xBF||" installer/CustomMsg.iss
+
+:: Add 'make' to the user path
+sed -i "s|ETC_FILES = Rprofile.site|ETC_FILES = Renviron.site Rprofile.site|" installer/Makefile
+
+:: Allow setting LOCAL_SOFT at runtime
+sed -i "s|LOCAL_SOFT = \$|LOCAL_SOFT ?= \$|" fixed/Makefile
 
 :: Download 'extsoft' directory
 :: make rsync-extsoft
