@@ -139,8 +139,8 @@ echo "Unknown target type: %target%"
 exit /b 1
 )
 
-:: Symlink
-ln -s %target%-win.exe R-%reltype%.exe
+:: Symlink (disabled because doesn't survive sftp)
+:: ln -s %target%-win.exe R-%reltype%.exe
 
 :: Webpages to ship on CRAN
 IF "%reltype%"=="devel" (
