@@ -112,28 +112,47 @@ set /p SVNSTRING=<%R_HOME%/SVN-REVISION
 set REVISION=%SVNSTRING:~10%
 
 :: Copy files to ship in the distribution
-cp %R_HOME%/SVN-REVISION %BUILDDIR%/SVN-REVISION.%target%
-cp %R_HOME%/src/gnuwin32/cran/%target%-win.exe %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/md5sum.txt %BUILDDIR%/md5sum.txt.%target%
-cp %R_HOME%/src/gnuwin32/cran/NEWS.%target%.html %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/CHANGES.%target%.html %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/README.%target% %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/target.cmd %BUILDDIR%/
+cd %BUILDDIR%
+cp %R_HOME%/SVN-REVISION SVN-REVISION.%target%
+cp %R_HOME%/src/gnuwin32/cran/%target%-win.exe .
+cp %R_HOME%/src/gnuwin32/cran/md5sum.txt md5sum.txt.%target%
+cp %R_HOME%/src/gnuwin32/cran/NEWS.%target%.html .
+cp %R_HOME%/src/gnuwin32/cran/CHANGES.%target%.html .
+cp %R_HOME%/src/gnuwin32/cran/README.%target% .
+cp %R_HOME%/src/gnuwin32/cran/target.cmd .
 
 :: Infer release from target.cmd, for example "R-3.4.2-patched"
 IF "%target:~-5,5%"=="devel" (
-cp %R_HOME%/src/gnuwin32/cran/rdevel.html %BUILDDIR%/
+set reltype=devel
 ) ELSE IF "%target:~-7,7%"=="patched" (
-cp %R_HOME%/src/gnuwin32/cran/rpatched.html %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/rtest.html %BUILDDIR%/
+set reltype=patched
+) ELSE IF "%target:~-2,2%"=="rc" (
+set reltype=patched
+) ELSE IF "%target:~-5,5%"=="alpha" (
+set reltype=patched
+) ELSE IF "%target:~-4,4%"=="beta" (
+set reltype=patched
 ) ELSE IF "%target:~0,3%"=="R-3" (
-cp %R_HOME%/src/gnuwin32/cran/index.html %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/md5sum.txt %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/rw-FAQ.html %BUILDDIR%/
-cp %R_HOME%/src/gnuwin32/cran/release.html %BUILDDIR%/
+set reltype=release
 ) ELSE (
 echo "Unknown target type: %target%"
 exit /b 1
+)
+
+:: Symlink
+ln -s %target%-win.exe R-%reltype%.exe
+
+:: Webpages to ship on CRAN
+IF "%reltype%"=="devel" (
+cp %R_HOME%/src/gnuwin32/cran/rdevel.html .
+) ELSE IF "%reltype%"=="patched" (
+cp %R_HOME%/src/gnuwin32/cran/rpatched.html .
+cp %R_HOME%/src/gnuwin32/cran/rtest.html .
+) ELSE IF "%reltype%"=="release" (
+cp %R_HOME%/src/gnuwin32/cran/index.html .
+cp %R_HOME%/src/gnuwin32/cran/md5sum.txt .
+cp %R_HOME%/src/gnuwin32/cran/rw-FAQ.html .
+cp %R_HOME%/src/gnuwin32/cran/release.html 
 )
 
 :: Done
