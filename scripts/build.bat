@@ -70,7 +70,8 @@ sed -i "s|ETC_FILES = Rprofile.site|ETC_FILES = Renviron.site Rprofile.site|" in
 
 :: Allow overriding LOCAL_SOFT variable at runtime
 set LOCAL_SOFT=%XR_HOME%/extsoft
-sed -i "s|LOCAL_SOFT =|LOCAL_SOFT ?= \$(R_USER)/R/\$(COMPILED_BY)|" fixed/etc/Makeconf
+sed -i "s|LOCAL_SOFT =|#LOCAL_SOFT|" fixed/etc/Makeconf
+::sed -i "s|LOCAL_SOFT =|LOCAL_SOFT ?= \$(R_USER)/R/\$(COMPILED_BY)|" fixed/etc/Makeconf
 
 :: Download 'extsoft' directory
 :: make rsync-extsoft
