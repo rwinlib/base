@@ -141,6 +141,7 @@ exit /b 1
 
 :: Symlink (disabled because doesn't survive sftp)
 :: ln -s %target%-win.exe R-%reltype%.exe
+echo %target%-win.exe > R-%reltype%.txt
 
 :: Webpages to ship on CRAN
 IF "%reltype%"=="devel" (
@@ -152,7 +153,7 @@ cp %R_HOME%/src/gnuwin32/cran/rtest.html .
 cp %R_HOME%/src/gnuwin32/cran/index.html .
 cp %R_HOME%/src/gnuwin32/cran/md5sum.txt .
 cp %R_HOME%/src/gnuwin32/cran/rw-FAQ.html .
-cp %R_HOME%/src/gnuwin32/cran/release.html 
+cp %R_HOME%/src/gnuwin32/cran/release.html .
 )
 
 :: Done
