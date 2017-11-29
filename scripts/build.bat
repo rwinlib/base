@@ -154,6 +154,7 @@ cp %R_HOME%/src/gnuwin32/cran/index.html .
 cp %R_HOME%/src/gnuwin32/cran/md5sum.txt .
 cp %R_HOME%/src/gnuwin32/cran/rw-FAQ.html .
 cp %R_HOME%/src/gnuwin32/cran/release.html .
+set REVISION=%target%
 )
 
 :: Done
