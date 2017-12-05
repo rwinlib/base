@@ -241,7 +241,7 @@ Function InstallPerl {
 }
 
 Function InstallInno {
-  $inno_url = "http://files.jrsoftware.org/is/5/innosetup-5.5.9.exe"
+  $inno_url = "http://files.jrsoftware.org/is/5/innosetup-5.5.9-unicode.exe"
 
   Progress ("Downloading InnoSetup from: " + $inno_url)
   & "C:\Program Files\Git\mingw64\bin\curl.exe" -s -o ../innosetup.exe -L $inno_url
