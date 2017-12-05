@@ -42,7 +42,6 @@ sudo chown upload:upload /ftproot/*
 Then make user `upload` for sftp only and chroot in `/ftproot`. Edit `/etc/ssh/sshd_config` and add to the bottom.
 
 ```
-#UsePAM yes
 Match group upload
   ChrootDirectory /ftproot
   X11Forwarding no
@@ -51,7 +50,6 @@ Match group upload
   PasswordAuthentication yes
 ```
 
-I had to comment out `UsePam` to make the chroot work.
 
 ### HTTP
 
@@ -99,4 +97,22 @@ rsa_private_key_file=/etc/letsencrypt/live/ftp.opencpu.org/privkey.pem
 
 Then `sudo service vsftpd restart`. Note we use the same apache2 letsencrypt certs for ftps.
 
+### CRAN rsync
+
+First did full sync with CRAN master. See also [mirror-howto](https://cran.r-project.org/mirror-howto.html). Requires a CRAN approved key in `~/.ssh/id_rsa`. Then run:
+
+```
+sudo mkdir /CRAN
+sudo chown jeroen:jeroen /CRAN
+mkdir -p /CRAN/bin/windows
+rsync -rtlzv --delete  --exclude "contrib" cran-rsync@cran.r-project.org:bin/windows/ /CRAN/bin/windows/
+```
+
+Then `crontab -e` and add a line
+
+```
+0 6 * * * cp -fp /ftproot/current/* /CRAN/bin/windows/base/ > /home/jeroen/copy.log 2>&1
+```
+
+This deploys r-patched and r-devel every morning at 6am GMT (builds start at 3AM).
 
