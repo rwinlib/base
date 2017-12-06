@@ -62,8 +62,8 @@ echo PATH="C:\Rtools\bin;${PATH}" > %R_HOME%/etc/Renviron.site
 :: Switch dir
 cd %R_HOME%/src/gnuwin32
 
-:: Remove BOM from this file
-sed -i "1s|^\xEF\xBB\xBF||" installer/CustomMsg.iss
+:: Remove BOM from this file (needed for non-unicode innosetup)
+:: sed -i "1s|^\xEF\xBB\xBF||" installer/CustomMsg.iss
 
 :: Add 'make' to the user path
 sed -i "s|ETC_FILES = Rprofile.site|ETC_FILES = Renviron.site Rprofile.site|" installer/Makefile
