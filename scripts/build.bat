@@ -56,7 +56,8 @@ sed -i "s/-lcairo -lpixman-1 -lpng -lz/-lcairo -lfontconfig -lfreetype -lpng -lp
 :: Mark output as experimental
 ::sed -i "s/Under development (unstable)/EXPERIMENTAL/" %R_HOME%/VERSION
 ::echo cat('R-experimental') > %R_HOME%/src/gnuwin32/fixed/rwver.R
-sed -i "s|Unsuffered Consequences|Blame Jeroen|" %R_HOME%/VERSION-NICK
+::sed -i "s|Unsuffered Consequences|Blame Jeroen|" %R_HOME%/VERSION-NICK
+
 echo PATH="C:\Rtools\bin;${PATH}" > %R_HOME%/etc/Renviron.site
 
 :: Switch dir
