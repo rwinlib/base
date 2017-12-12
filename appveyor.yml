@@ -42,9 +42,12 @@ deploy:
     target: "%target%"
     archive: "%archive%"
     revision: "%revision%"
+    on:
+      branch: master
 
   - provider: Environment
     name: ftp_current
     target: "%target%"
     on:
+      branch: master
       cran: true

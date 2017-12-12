@@ -32,3 +32,7 @@ build-r-devel.bat
 ```
 
 The [appveyor.yml](appveyor.yml) file has more details.
+
+## AppVeyor Deployment
+
+This repository is used for daily builds on [appveyor](https://ci.appveyor.com/project/jeroen/base) which get deployed on the [ftp server](https://ftp.opencpu.org). See [appveyor.md](appveyor.md) and [appveyor.yml](appveyor.yml) for configuration details.

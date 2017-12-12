@@ -99,7 +99,7 @@ Then `sudo service vsftpd restart`. Note we use the same apache2 letsencrypt cer
 
 ### CRAN rsync
 
-First did full sync with CRAN master. See also [mirror-howto](https://cran.r-project.org/mirror-howto.html). Requires a CRAN approved key in `~/.ssh/id_rsa`. Then run:
+First did full sync with CRAN master (see [mirror-howto](https://cran.r-project.org/mirror-howto.html)). Requires a CRAN approved key in `~/.ssh/id_rsa`. Then:
 
 ```
 sudo mkdir /CRAN
