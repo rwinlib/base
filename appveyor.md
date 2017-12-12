@@ -50,6 +50,17 @@ Match group upload
   PasswordAuthentication yes
 ```
 
+To cleanup put this script in `/home/upload/cleanup.sh`. Here `+30` refers to age in number of days.
+
+```
+find /ftproot/archive/r-devel/ /ftproot/archive/r-patched -type d -mtime +25 -exec rm -R "{}" \;
+```
+
+Then a cronjob for user `upload` with:
+
+```
+0 0 * * * /home/upload/cleanup.sh >> /home/upload/cleanup.log 2>&1
+```
 
 ### HTTP
 
@@ -108,11 +119,10 @@ mkdir -p /CRAN/bin/windows
 rsync -rtlzv --delete  --exclude "contrib" cran-rsync@cran.r-project.org:bin/windows/ /CRAN/bin/windows/
 ```
 
-Then `crontab -e` and add a line
+Then `crontab -e` for user `jeroen` and added a line:
 
 ```
-0 6 * * * cp -fp /ftproot/current/* /CRAN/bin/windows/base/ > /home/jeroen/copy.log 2>&1
+0 6 * * * cp -fp /ftproot/current/* /CRAN/bin/windows/base/ >> /home/jeroen/copy.log 2>&1
 ```
 
 This deploys r-patched and r-devel every morning at 6am GMT (builds start at 3AM).
-
