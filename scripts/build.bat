@@ -10,6 +10,7 @@ if not exist %RTOOLS_BIN% (
 	echo Rtools installation not found; expected at %RTOOLS_BIN%
 	exit /b 1
 )
+set RTOOLS=%RTOOLS_BIN:~0,-4%
 
 ::set WIN=32
 ::set WIN=64
@@ -43,7 +44,7 @@ mkdir %R_NAME%
 tar -xf %SOURCEDIR%/%TARBALL% -C %R_NAME% --strip-components=1
 set XR_HOME=%R_HOME:\=/%
 set XHOME32=%HOME32:\=/%
-sed -e "s|@win@|%WIN%|" -e "s|@home@|%XR_HOME%|" -e "s|@home32@|%XHOME32%|" %SOURCEDIR%\files\MkRules.local.in > %R_HOME%/src/gnuwin32/MkRules.local
+sed -e "s|@win@|%WIN%|" -e "s|@home@|%XR_HOME%|" -e "s|@home32@|%XHOME32%|" -e "s|@RTOOLS@|%RTOOLS%|g" %SOURCEDIR%\files\MkRules.local.in > %R_HOME%/src/gnuwin32/MkRules.local
 
 :: Copy libraries
 cp -R %SOURCEDIR%\libcurl %R_HOME%\libcurl

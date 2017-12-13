@@ -1,6 +1,6 @@
 #-*- Makefile -*-
 
-RTOOLS=C:/Rtools
+RTOOLS=@RTOOLS@
 
 ### For multilib compiler ###
 # TOOL_PATH = C:/Rtools/gcc-4.6.3/bin/
