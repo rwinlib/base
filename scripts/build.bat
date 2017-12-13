@@ -10,7 +10,10 @@ if not exist %RTOOLS_BIN% (
 	echo Rtools installation not found; expected at %RTOOLS_BIN%
 	exit /b 1
 )
+
+:: Generate path to Rtools root (using forward slashes)
 set RTOOLS=%RTOOLS_BIN:~0,-4%
+set RTOOLS=%RTOOLS:\=/%
 
 ::set WIN=32
 ::set WIN=64
