@@ -1,7 +1,14 @@
 ::set target=R-devel.tar.gz
 set TARBALL=%1
 if not exist "%TARBALL%" (
-echo File not found: %TARBALL% && exit /b 1
+	echo File not found: %TARBALL% && exit /b 1
+)
+
+:: Check for Rtools
+if not defined RTOOLS_BIN set RTOOLS_BIN=C:\Rtools\bin
+if not exist %RTOOLS_BIN% (
+	echo Rtools installation not found; expected at %RTOOLS_BIN%
+	exit /b 1
 )
 
 ::set WIN=32
@@ -28,7 +35,7 @@ set TMPDIR=%TEMP%
 set HOME32=%BUILDDIR%\%VERSION%-win32
 
 :: Add rtools executables in path
-set PATH=C:\rtools\bin;%PATH%
+set PATH=%RTOOLS_BIN%;%PATH%
 
 :: Copy sources
 rm -Rf %R_NAME%
@@ -58,7 +65,7 @@ sed -i "s/-lcairo -lpixman-1 -lpng -lz/-lcairo -lfontconfig -lfreetype -lpng -lp
 ::echo cat('R-experimental') > %R_HOME%/src/gnuwin32/fixed/rwver.R
 ::sed -i "s|Unsuffered Consequences|Blame Jeroen|" %R_HOME%/VERSION-NICK
 
-echo PATH="C:\Rtools\bin;${PATH}" > %R_HOME%/etc/Renviron.site
+echo PATH="%RTOOLS_BIN%;${PATH}" > %R_HOME%/etc/Renviron.site
 
 :: Switch dir
 cd %R_HOME%/src/gnuwin32
