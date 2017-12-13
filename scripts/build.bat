@@ -22,9 +22,16 @@ set WIN=%2
 ::globals
 set STARTDIR=%CD%
 set SOURCEDIR=%~dp0..
-mkdir ..\BUILD
-cd ..\BUILD
-set BUILDDIR=%CD%
+
+:: build directory
+if not defined %BUILDDIR% (
+	mkdir ..\BUILD
+	cd ..\BUILD
+	set BUILDDIR=%CD%
+) else (
+	mkdir %BUILDDIR%
+	cd %BUILDDIR%
+)
 
 echo SOURCEDIR: %SOURCEDIR%
 echo BUILDDIR: %BUILDDIR%
