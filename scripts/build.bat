@@ -58,7 +58,7 @@ sed -i "s/-lcairo -lpixman-1 -lpng -lz/-lcairo -lfontconfig -lfreetype -lpng -lp
 ::echo cat('R-experimental') > %R_HOME%/src/gnuwin32/fixed/rwver.R
 ::sed -i "s|Unsuffered Consequences|Blame Jeroen|" %R_HOME%/VERSION-NICK
 
-echo PATH="C:\Rtools\bin;${PATH}" > %R_HOME%/etc/Renviron.site
+::echo PATH="C:\Rtools\bin;${PATH}" > %R_HOME%/etc/Renviron.site
 
 :: Switch dir
 cd %R_HOME%/src/gnuwin32
@@ -67,7 +67,7 @@ cd %R_HOME%/src/gnuwin32
 :: sed -i "1s|^\xEF\xBB\xBF||" installer/CustomMsg.iss
 
 :: Add 'make' to the user path
-sed -i "s|ETC_FILES = Rprofile.site|ETC_FILES = Renviron.site Rprofile.site|" installer/Makefile
+:: sed -i "s|ETC_FILES = Rprofile.site|ETC_FILES = Renviron.site Rprofile.site|" installer/Makefile
 
 :: Allow overriding LOCAL_SOFT variable at runtime
 set LOCAL_SOFT=%XR_HOME%/extsoft
