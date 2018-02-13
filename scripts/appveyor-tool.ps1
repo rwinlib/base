@@ -184,20 +184,14 @@ Function SetTimezone {
 }
 
 Function InstallMiktex {
-  $miktexurl = "https://miktex.org/download/ctan/systems/win32/miktex/setup/miktexsetup-x64.zip"
-  $miktexrepo = "--verbose --package-set=basic --local-package-repository=C:\miktex"
-  $miktexdownload = "$miktexrepo download"
-  $miktexinstall = "$miktexrepo --shared --modify-path install"
+  $miktexurl = "https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x64/basic-miktex-x64.exe"
+  $miktexinstall = "--unattended --auto-install=yes --shared --package-set=basic"
 
   Progress ("Downloading " + $miktexurl)
-  & "C:\Program Files\Git\mingw64\bin\curl.exe" -s -o ../miktexsetup-x64.zip -L $miktexurl
-  7z x ../miktexsetup-x64.zip -oc:\download | Out-Null
-
-  Progress ("Downloading MiKTeX: " + $miktexdownload)
-  Start-Process -FilePath "c:\download\miktexsetup.exe" -ArgumentList $miktexdownload -NoNewWindow -Wait
+  & "C:\Program Files\Git\mingw64\bin\curl.exe" -s -o ../basic-miktex-x64.exe -L $miktexurl
 
   Progress ("Installing MiKTeX: " + $miktexinstall)
-  Start-Process -FilePath "c:\download\miktexsetup.exe" -ArgumentList $miktexinstall -NoNewWindow -Wait
+  Start-Process -FilePath ..\basic-miktex-x64.exe -ArgumentList $miktexinstall -NoNewWindow -Wait
 
   Progress "Setting PATH variable for current process"
   $env:PATH = 'C:\Program Files\MiKTeX 2.9\miktex\bin\x64;' + $env:PATH
@@ -215,7 +209,7 @@ Function InstallMiktex {
   initexmf --admin --set-config-value "[MPM]AutoInstall=1"   
 
   # See https://tex.stackexchange.com/a/129523/12890
-  $conffile = $env:APPDATA + "\MiKTeX\2.9\miktex\config\updmap.cfg"
+  $conffile = "C:\Program Files\MiKTeX 2.9\miktex\config\updmap.cfg"
   Progress "Adding zi4.map"
   initexmf --admin --update-fndb
   Add-Content $conffile "`nMap zi4.map`n"
