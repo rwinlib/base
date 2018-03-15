@@ -1,5 +1,7 @@
 environment:
   matrix:
+    - source: https://cloud.r-project.org/src/base/R-latest.tar.gz
+      archive: r-release    
     - source: https://stat.ethz.ch/R/daily/R-devel.tar.gz
       archive: r-devel
       cran: true
@@ -7,8 +9,6 @@ environment:
     - source: https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
       archive: r-patched
       cran: true
-    - source: https://cloud.r-project.org/src/base/R-latest.tar.gz
-      archive: r-release
 
 install:
   - ps: |
