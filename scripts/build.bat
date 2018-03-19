@@ -51,7 +51,7 @@ cp -R %SOURCEDIR%\cairo\lib\i386 %R_HOME%\cairo\win32
 xcopy /s "%SOURCEDIR%\cairo\include\cairo" "%R_HOME%\cairo\win32"
 xcopy /s "%SOURCEDIR%\cairo\include\cairo" "%R_HOME%\cairo\win64"
 
-sed -i "s/-lcairo -lpixman-1 -lpng -lz/-lcairo -lfontconfig -lfreetype -lpng -lpixman-1 -lexpat -lharfbuzz -lbz2 -lz/" %R_HOME%/src/library/grDevices/src/cairo/Makefile.win
+sed -i "s/-lcairo -lpixman-1 -lpng -lz/-lcairo -lfontconfig -lfreetype -lpng -lpixman-1 -lexpat -lharfbuzz -lbz2 -lintl -lz/" %R_HOME%/src/library/grDevices/src/cairo/Makefile.win
 
 :: Mark output as experimental
 ::sed -i "s/Under development (unstable)/EXPERIMENTAL/" %R_HOME%/VERSION
