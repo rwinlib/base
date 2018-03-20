@@ -10,6 +10,13 @@ environment:
       archive: r-patched
       cran: true
 
+  PfxUri:
+    secure: z+vP1iY4odY07BV7v+yfuA2MBKQFFLGokZoefPhz22evsMT/KnwtB4NgcYNLJheI
+  CertPassword:
+    secure: nwSwtaLCl6Xo5sfqKLvO30aFFGCgjGJ2GKTqS33zkJg=
+  SignTool: C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe
+  KeyFile: C:\jeroen.pfx
+
 install:
   - ps: |
       Import-Module '.\scripts\appveyor-tool.ps1'
@@ -26,6 +33,8 @@ build_script:
   - .\scripts\build.bat R-source.tar.gz 64
 
 after_build:
+  - ps: Start-FileDownload $env:PfxUri -FileName $env:KeyFile
+  - ps: SignFiles "${env:builddir}\*.exe"
   - 7z a %target%-win.zip %builddir%\*.exe %builddir%\*.log %builddir%\*.html %builddir%\md5sum.* %builddir%\SVN-REVISION.* %builddir%\README.*
 
 artifacts:

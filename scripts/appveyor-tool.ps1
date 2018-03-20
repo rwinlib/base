@@ -246,3 +246,14 @@ Function InstallInno {
   Progress "InnoSetup installation: Done"
   Get-ItemProperty "C:\Program Files (x86)\Inno Setup 5\ISCC.exe"
 }
+
+function CheckExitCode($msg) {
+  if ($LastExitCode -ne 0) {
+    Throw $msg
+  }
+}
+
+function SignFiles($files) {
+  & $env:SignTool sign /f $env:KeyFile /p "$env:CertPassword" /tr http://sha256timestamp.ws.symantec.com/sha256/timestamp /td sha256 /fd sha256 $files
+  CheckExitCode "Failed to sign files."
+}
