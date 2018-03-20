@@ -1,7 +1,7 @@
 environment:
   matrix:
-#    - source: https://cloud.r-project.org/src/base/R-latest.tar.gz
-#      archive: r-release
+    - source: https://cloud.r-project.org/src/base/R-latest.tar.gz
+      archive: r-release
     - source: https://stat.ethz.ch/R/daily/R-devel.tar.gz
       archive: r-devel
       cran: true
@@ -35,7 +35,8 @@ build_script:
 after_build:
   - ps: Start-FileDownload $env:PfxUri -FileName $env:KeyFile
   - ps: SignFiles "${env:builddir}\*.exe"
-  - 7z a %target%-win.zip %builddir%\*.exe %builddir%\*.log %builddir%\*.html %builddir%\md5sum.* %builddir%\SVN-REVISION.* %builddir%\README.*
+  - ps: Remove-Item –path $env:KeyFile
+  - 7z a %target%-win.zip %builddir%\*.exe %builddir%\*.log %builddir%\*.html %builddir%\SVN-REVISION.* %builddir%\README.*
 
 artifacts:
   - path: "%target%-win.zip"
