@@ -9,6 +9,7 @@ environment:
     - source: https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
       archive: r-patched
       cran: true
+      RTOOLS_VERSION: 34
 
   PfxUri:
     secure: z+vP1iY4odY07BV7v+yfuA2MBKQFFLGokZoefPhz22evsMT/KnwtB4NgcYNLJheI
