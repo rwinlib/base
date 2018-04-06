@@ -33,6 +33,9 @@ set PATH=C:\rtools\bin;%PATH%
 :: Copy sources
 rm -Rf %R_NAME%
 mkdir %R_NAME%
+
+:: Needed to fix tar symlinks
+set MSYS=winsymlinks:lnk
 tar -xf %SOURCEDIR%/%TARBALL% -C %R_NAME% --strip-components=1
 set XR_HOME=%R_HOME:\=/%
 set XHOME32=%HOME32:\=/%
