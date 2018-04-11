@@ -54,7 +54,6 @@ cp -R %SOURCEDIR%\cairo\lib\i386 %R_HOME%\cairo\win32
 xcopy /s "%SOURCEDIR%\cairo\include\cairo" "%R_HOME%\cairo\win32"
 xcopy /s "%SOURCEDIR%\cairo\include\cairo" "%R_HOME%\cairo\win64"
 
-sed -i "s/-lcairo -lpixman-1 -lpng -lz/-lcairo -lfontconfig -lfreetype -lpng -lpixman-1 -lexpat -lharfbuzz -lbz2 -lintl -lz/" %R_HOME%/src/library/grDevices/src/cairo/Makefile.win
 
 :: Mark output as experimental
 ::sed -i "s/Under development (unstable)/EXPERIMENTAL/" %R_HOME%/VERSION
@@ -62,6 +61,12 @@ sed -i "s/-lcairo -lpixman-1 -lpng -lz/-lcairo -lfontconfig -lfreetype -lpng -lp
 ::sed -i "s|Unsuffered Consequences|Blame Jeroen|" %R_HOME%/VERSION-NICK
 
 ::echo PATH="C:\Rtools\bin;${PATH}" > %R_HOME%/etc/Renviron.site
+
+:: apply local patches
+cd %R_HOME%
+patch -p1 -i %SOURCEDIR%\patches\cairo.diff
+patch -p1 -i %SOURCEDIR%\patches\cranextra.diff
+patch -p1 -i %SOURCEDIR%\patches\objdump.diff
 
 :: Switch dir
 cd %R_HOME%/src/gnuwin32

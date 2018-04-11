@@ -1,0 +1,14 @@
+diff --git a/src/library/utils/R/zzz.R b/src/library/utils/R/zzz.R
+index 5078342c606..9bacb5c1a9e 100644
+--- a/src/library/utils/R/zzz.R
++++ b/src/library/utils/R/zzz.R
+@@ -38,8 +38,7 @@
+         if(.Platform$OS.type == "windows") {
+             list(unzip = "internal",
+                  editor = if(length(grep("Rgui", commandArgs(), TRUE))) "internal" else "notepad",
+-                 repos = c(CRAN = "@CRAN@",
+-                           CRANextra = "http://www.stats.ox.ac.uk/pub/RWin"),
++                 repos = c(CRAN = "@CRAN@"),
+                  askYesNo = if (.Platform$GUI == "Rgui") askYesNoWinDialog
+                  )
+         } else

@@ -1,0 +1,14 @@
+diff --git a/src/library/tools/R/sotools.R b/src/library/tools/R/sotools.R
+index 1ffb225ddd8..4def06fb6d8 100644
+--- a/src/library/tools/R/sotools.R
++++ b/src/library/tools/R/sotools.R
+@@ -20,7 +20,8 @@ if(.Platform$OS.type == "windows") {
+     read_symbols_from_dll <- function(f, rarch)
+     {
+         ## reasonable to assume this on the path
+-        DLL_nm <- "objdump.exe"
++        gcc <- system2(file.path(R.home("bin"), "R"), c("CMD", "config", "CC"), stdout = TRUE)
++        DLL_nm <- sub("gcc$", "objdump", gcc)
+         if(!nzchar(Sys.which(DLL_nm))) {
+             warning("this requires 'objdump.exe' to be on the PATH")
+             return()
