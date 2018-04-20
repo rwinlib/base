@@ -38,9 +38,9 @@ after_build:
   - ps: SignFiles "${env:builddir}\*.exe"
   - ps: Remove-Item –path $env:KeyFile
   - cd %builddir%
-  - md5sum %target%-win.exe > md5sum.txt
+  - md5sum %target%-win.exe > md5sum.txt.%target%
   - cd %startdir%
-  - 7z a %target%-win.zip %builddir%\*.exe %builddir%\md5sum.txt %builddir%\*.log %builddir%\*.html %builddir%\SVN-REVISION.* %builddir%\README.*
+  - 7z a %target%-win.zip %builddir%\*.exe %builddir%\md5sum.txt.%target% %builddir%\*.log %builddir%\*.html %builddir%\SVN-REVISION.* %builddir%\README.*
 
 artifacts:
   - path: "%target%-win.zip"
