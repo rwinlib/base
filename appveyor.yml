@@ -1,7 +1,5 @@
 environment:
   matrix:
-#    - source: https://cloud.r-project.org/src/base/R-latest.tar.gz
-#      archive: r-release
     - source: https://stat.ethz.ch/R/daily/R-devel.tar.gz
       archive: r-devel
       cran: true
@@ -9,7 +7,9 @@ environment:
     - source: https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
       archive: r-patched
       cran: true
-#      RTOOLS_VERSION: 34
+    - source: https://cloud.r-project.org/src/base/R-latest.tar.gz
+      RTOOLS_VERSION: 35
+      archive: r-release
 
   PfxUri:
     secure: z+vP1iY4odY07BV7v+yfuA2MBKQFFLGokZoefPhz22evsMT/KnwtB4NgcYNLJheI
