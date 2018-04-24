@@ -257,3 +257,9 @@ function SignFiles($files) {
   & $env:SignTool sign /f $env:KeyFile /p "$env:CertPassword" /tr http://sha256timestamp.ws.symantec.com/sha256/timestamp /td sha256 /fd sha256 $files
   CheckExitCode "Failed to sign files."
 }
+
+function AppCertKit($files) {
+  & $env:CertKit reset
+  & $env:CertKit test -apptype desktop -setuppath $files -appusage peruser -reportoutputpath certreport.xml
+  CheckExitCode "Failed to run App Certification Kit."
+}

@@ -16,6 +16,7 @@ environment:
   CertPassword:
     secure: nwSwtaLCl6Xo5sfqKLvO30aFFGCgjGJ2GKTqS33zkJg=
   SignTool: C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe
+  CertKit: C:\Program Files (x86)\Windows Kits\10\App Certification Kit\appcert.exe
   KeyFile: C:\jeroen.pfx
 
 install:
@@ -35,12 +36,12 @@ build_script:
 
 after_build:
   - ps: Start-FileDownload $env:PfxUri -FileName $env:KeyFile
-  - ps: SignFiles "${env:builddir}\*.exe"
+  - ps: SignFiles "${env:builddir}\${env:target}-win.exe"
   - ps: Remove-Item –path $env:KeyFile
   - cd %builddir%
   - md5sum %target%-win.exe > md5sum.txt.%target%
   - cd %startdir%
-  - 7z a %target%-win.zip %builddir%\*.exe %builddir%\md5sum.txt.%target% %builddir%\*.log %builddir%\*.html %builddir%\SVN-REVISION.* %builddir%\README.*
+  - 7z a %target%-win.zip %builddir%\%target%-win.exe %builddir%\md5sum.txt.%target% %builddir%\*.log %builddir%\*.html %builddir%\SVN-REVISION.* %builddir%\README.*
 
 artifacts:
   - path: "%target%-win.zip"
