@@ -67,6 +67,7 @@ cd %R_HOME%
 patch -p1 -i %SOURCEDIR%\patches\cairo.diff
 patch -p1 -i %SOURCEDIR%\patches\cranextra.diff
 :: patch -p1 -i %SOURCEDIR%\patches\objdump.diff
+patch -p1 -i %SOURCEDIR%\patches\shortcut.diff
 
 :: Switch dir
 cd %R_HOME%/src/gnuwin32
