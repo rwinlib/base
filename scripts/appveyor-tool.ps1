@@ -1,4 +1,5 @@
 $CRAN = "https://cloud.r-project.org"
+$MIKTEX_MIRROR = "https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x64/basic-miktex-2.9.6753-x64.exe"
 
 # Found at http://zduck.com/2012/powershell-batch-files-exit-codes/
 Function Exec
@@ -184,11 +185,10 @@ Function SetTimezone {
 }
 
 Function InstallMiktex {
-  $miktexurl = "https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x64/basic-miktex-x64.exe"
   $miktexinstall = "--unattended --auto-install=yes --shared --package-set=basic"
 
-  Progress ("Downloading " + $miktexurl)
-  & "C:\Program Files\Git\mingw64\bin\curl.exe" -s -o ../basic-miktex-x64.exe -L $miktexurl
+  Progress ("Downloading " + $MIKTEX_MIRROR)
+  & "C:\Program Files\Git\mingw64\bin\curl.exe" -s -o ../basic-miktex-x64.exe -L $MIKTEX_MIRROR
 
   Progress ("Installing MiKTeX: " + $miktexinstall)
   Start-Process -FilePath ..\basic-miktex-x64.exe -ArgumentList $miktexinstall -NoNewWindow -Wait
