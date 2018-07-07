@@ -83,6 +83,13 @@ Alias / /ftproot/
 
 And then run `sudo a2ensite ftp` to activate. I also added letsencrypt certs using [standard instructions](https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-16-04).
 
+Add this line to `/etc/mime.types` to make utf-8 log files show properly in the browser:
+
+```
+echo "text/plain;charset=utf-8                        log"
+```
+
+
 ### FTP
 
 Installed `vsftpd` and edited `/etc/vsftpd.conf` with the following rules:
