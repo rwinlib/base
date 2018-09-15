@@ -1,5 +1,5 @@
 $CRAN = "https://cloud.r-project.org"
-$MIKTEX_MIRROR = "https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x64/basic-miktex-2.9.6753-x64.exe"
+$MIKTEX_MIRROR = "https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x64/basic-miktex-2.9.6813-x64.exe"
 
 # Found at http://zduck.com/2012/powershell-batch-files-exit-codes/
 Function Exec
