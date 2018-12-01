@@ -1,6 +1,9 @@
 $CRAN = "https://cloud.r-project.org"
 $MIKTEX_MIRROR = "https://miktex.org/download/ctan/systems/win32/miktex/setup/windows-x64/basic-miktex-2.9.6813-x64.exe"
 
+#$PERL_MIRROR = "http://strawberryperl.com/download/5.26.1.1/strawberry-perl-5.26.1.1-64bit-portable.zip"
+$PERL_MIRROR = "https://ftp.bit.nl/xbmc/build-deps/win32/strawberry-perl-5.28.0.1-64bit-portable.zip"
+
 # Found at http://zduck.com/2012/powershell-batch-files-exit-codes/
 Function Exec
 {
@@ -222,10 +225,8 @@ Function InstallMiktex {
 }
 
 Function InstallPerl {
-  $perl_url = "http://strawberryperl.com/download/5.26.1.1/strawberry-perl-5.26.1.1-64bit-portable.zip"
-
-  Progress ("Downloading Perl from: " + $perl_url)
-  & "C:\Program Files\Git\mingw64\bin\curl.exe" -s -o ../strawberry.zip -L $perl_url
+  Progress ("Downloading Perl from: " + $PERL_MIRROR)
+  & "C:\Program Files\Git\mingw64\bin\curl.exe" -s -o ../strawberry.zip -L $PERL_MIRROR
 
   Progress "Extracting Perl"
   7z x ../strawberry.zip -oc:\Strawberry | Out-Null
