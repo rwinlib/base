@@ -7,7 +7,7 @@ index b302550bbdf..f174c5658fe 100644
    $(arch_DEFS) -I"$(CAIRO_HOME)/win$(WIN)"
  
 -PKG_LIBS = -L"$(CAIRO_HOME)/win$(WIN)" -lcairo -lpixman-1 -lpng -lz \
-+PKG_LIBS = -L"$(CAIRO_HOME)/win$(WIN)" -lcairo -lfontconfig -lfreetype -lpng -lpixman-1 -lexpat -lharfbuzz -lbz2 -lintl -lz \
++PKG_LIBS = -L"$(CAIRO_HOME)/win$(WIN)" -lcairo -lfreetype -lpng -lpixman-1 -lharfbuzz -lbz2 -lz \
    -lgdi32 -lmsimg32 -L.. -lgrDevices
  
  SOURCES = cairoBM.c
