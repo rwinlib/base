@@ -2,7 +2,7 @@
 
 > Official repository for building R on Windows
 
-This repository is used for daily builds on [appveyor](https://ci.appveyor.com/project/jeroen/base) which get deployed on the [ftp server](https://ftp.opencpu.org).
+This repository is used for daily builds on [appveyor](https://ci.appveyor.com/project/jeroen/base) which get deployed on [CRAN](https://cran.r-project.org/bin/windows/base/).
 
 ## Local Requirements
 
@@ -36,3 +36,16 @@ The [appveyor.yml](appveyor.yml) file has more details.
 ## AppVeyor Deployment
 
 This repository is used for daily builds on [appveyor](https://ci.appveyor.com/project/jeroen/base) which get deployed on the [ftp server](https://ftp.opencpu.org). See [appveyor.md](appveyor.md) and [appveyor.yml](appveyor.yml) for configuration details.
+
+
+## Release Steps
+
+For release manager:
+
+ - Uncomment and update the release url in `appveyor.yml`
+ - Commit to temp branch, tag release locally and push tag to GH.
+ - Download artifact from AppVeyor. Edit tag to attach zip and release.
+ - Create new dir in `base/old/` on the FTP and unzip the files
+ - Rename `md5sum.txt` file and copy files to `base/`
+ - Copy (dont symlink) `R-x.y.z-win.exe` to `R-x.y.zpatched-win.exe` as placeholder until R-patched is uploaded tomorrow
+
