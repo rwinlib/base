@@ -51,6 +51,10 @@ on_finish:
   - 7z a logs.zip %builddir%\*.log
   - appveyor PushArtifact logs.zip
 
+on_failure:
+  - 7z a tests.zip %builddir%\R-source-win64\tests\*
+  - appveyor PushArtifact tests.zip
+
 deploy:
   - provider: Environment
     name: ftp_archive

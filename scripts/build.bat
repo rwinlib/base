@@ -37,6 +37,7 @@ mkdir %R_NAME%
 :: Needed to fix tar symlinks
 set MSYS=winsymlinks:lnk
 tar -xf %SOURCEDIR%/%TARBALL% -C %R_NAME% --strip-components=1
+set MSYS=
 set XR_HOME=%R_HOME:\=/%
 set XHOME32=%HOME32:\=/%
 sed -e "s|@win@|%WIN%|" -e "s|@home@|%XR_HOME%|" -e "s|@home32@|%XHOME32%|" %SOURCEDIR%\files\MkRules.local.in > %R_HOME%/src/gnuwin32/MkRules.local
