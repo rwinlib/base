@@ -39,8 +39,8 @@ set MSYS=winsymlinks:lnk
 tar -xf %SOURCEDIR%/%TARBALL% -C %R_NAME% --strip-components=1
 
 :: Temp workaround for broken R-devel symlink tests
-set MSYS=
-tar -xf %SOURCEDIR%/%TARBALL% -C %R_NAME% --strip-components=1
+::set MSYS=
+::tar -xf %SOURCEDIR%/%TARBALL% -C %R_NAME% --strip-components=1
 
 set XR_HOME=%R_HOME:\=/%
 set XHOME32=%HOME32:\=/%
@@ -70,15 +70,10 @@ xcopy /s "%SOURCEDIR%\cairo\include\cairo" "%R_HOME%\cairo\win64"
 :: apply local patches
 cd %R_HOME%
 patch -p1 -i %SOURCEDIR%\patches\cairo.diff
-
-:: patch -p1 -i %SOURCEDIR%\patches\objdump.diff
 patch -p1 -i %SOURCEDIR%\patches\shortcut.diff
 
 :: Switch dir
 cd %R_HOME%/src/gnuwin32
-
-:: Remove BOM from this file (needed for non-unicode innosetup)
-:: sed -i "1s|^\xEF\xBB\xBF||" installer/CustomMsg.iss
 
 :: Add 'make' to the user path
 :: sed -i "s|ETC_FILES = Rprofile.site|ETC_FILES = Renviron.site Rprofile.site|" installer/Makefile
