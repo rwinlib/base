@@ -236,17 +236,17 @@ Function InstallPerl {
 }
 
 Function InstallInno {
-  $inno_url = "http://jrsoftware.org/download.php/is-unicode.exe?site=2"
+  $inno_url = "http://jrsoftware.org/download.php/is.exe?site=2"
   #$inno_url = "https://github.com/jrsoftware/issrc/releases/download/is-5_6_1/innosetup-5.6.1-unicode.exe"
 
   Progress ("Downloading InnoSetup from: " + $inno_url)
   & "C:\Program Files\Git\mingw64\bin\curl.exe" -s -o ../innosetup.exe -L $inno_url
 
   Progress "Installig InnoSetup"
-  Start-Process -FilePath ..\innosetup.exe -ArgumentList /SILENT -NoNewWindow -Wait
+  Start-Process -FilePath ..\innosetup.exe -ArgumentList "/ALLUSERS /SILENT" -NoNewWindow -Wait
 
   Progress "InnoSetup installation: Done"
-  Get-ItemProperty "C:\Program Files (x86)\Inno Setup 5\ISCC.exe"
+  Get-ItemProperty "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
 }
 
 function CheckExitCode($msg) {
