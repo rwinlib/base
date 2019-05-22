@@ -13,7 +13,15 @@ Building R on Windows requires the following tools:
  - [Inno Setup](http://www.jrsoftware.org/isdl.php) to build the installer
  - Perl such as [Strawberry Perl](http://strawberryperl.com/)
 
-The [appveyor-tools.ps1](scripts/appveyor-tool.ps1) powershell can be used for unattended installation of these tools.
+Except for Rtools, all of these can be installed using [chocolatey](https://chocolatey.org/):
+
+```
+choco install miktex
+choco install strawberryperl
+choco install innosetup --pre
+```
+
+Alternatively, the [appveyor-tools.ps1](scripts/appveyor-tool.ps1) powershell script can also be used for unattended installation of these tools.
 
 ## Building
 
