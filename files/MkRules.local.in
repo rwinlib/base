@@ -42,3 +42,6 @@ HOME32 = @home32@
 
 ## Fix for MiKTeX removing texi2dvi
 TEXI2DVI = TEXINDEX=$(RTOOLS)/bin/texindex.exe texify
+
+## For R-devel only:
+CAIRO_LIBS = "-L$(CAIRO_HOME)/win$(WIN) -lcairo -lfreetype -lpng -lpixman-1 -lharfbuzz -lbz2 -lz -lgdi32 -lmsimg32"
