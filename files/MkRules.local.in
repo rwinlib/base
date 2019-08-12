@@ -40,7 +40,8 @@ BUILD_HTML = YES
 MIKTEX = TRUE
 HOME32 = @home32@
 
-## Fix for MiKTeX removing texi2dvi
+## Fix for MiKTeX removing texi2dvi. NB: What happens here is that we
+## set TEXI2DVI to run 'texify' with the TEXINDEX environment variable set.
 TEXI2DVI = TEXINDEX=$(RTOOLS)/bin/texindex.exe texify
 
 ## For R-devel only:
