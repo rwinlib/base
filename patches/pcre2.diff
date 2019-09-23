@@ -1,0 +1,41 @@
+diff --git a/src/gnuwin32/Makefile b/src/gnuwin32/Makefile
+index 812a37af12..1e63aa69f4 100644
+--- a/src/gnuwin32/Makefile
++++ b/src/gnuwin32/Makefile
+@@ -68,7 +68,7 @@ endif
+ 
+ 
+ R-DLLFLAGS = -mwindows
+-LIBEXTRAS = -L"$(EXT_LIBS)"/lib$(R_ARCH) -lpcre -lz -lbz2 -llzma
++LIBEXTRAS = -L"$(EXT_LIBS)"/lib$(R_ARCH) -lpcre2-8 -lz -lbz2 -llzma
+ ifdef USE_ICU
+ LIBEXTRAS += -L"$(ICU_PATH)"/lib$(R_ARCH) $(ICU_LIBS)
+ endif
+diff --git a/src/gnuwin32/fixed/h/config.h b/src/gnuwin32/fixed/h/config.h
+index 5269eb4384..eaa1c02126 100644
+--- a/src/gnuwin32/fixed/h/config.h
++++ b/src/gnuwin32/fixed/h/config.h
+@@ -600,6 +600,8 @@
+ 
+ /* Define if your system has pcre2. */
+ /* #undef HAVE_PCRE2 */
++#define HAVE_PCRE2 1
++#define PCRE2_CODE_UNIT_WIDTH 8
+ 
+ /* Define to 1 if you have the <pcre.h> header file. */
+ /* #undef HAVE_PCRE_H */
+diff --git a/src/main/Makefile.win b/src/main/Makefile.win
+index 1a02f837aa..b3e3b0f79a 100644
+--- a/src/main/Makefile.win
++++ b/src/main/Makefile.win
+@@ -64,8 +64,8 @@ sysutils-CPPFLAGS = -I../gnuwin32
+ 
+ connections-CPPFLAGS = -DLZMA_API_STATIC -I"$(EXT_LIBS)"/include
+ dounzip-CPPFLAGS = -I$(EXT_LIBS)/include
+-grep-CPPFLAGS = -DPCRE_STATIC -I../extra -I../gnuwin32 -I"$(EXT_LIBS)"/include
+-platform-CPPFLAGS += -DPCRE_STATIC -DLZMA_API_STATIC -I"$(EXT_LIBS)"/include
++grep-CPPFLAGS = -DPCRE2_STATIC -I../extra -I../gnuwin32 -I"$(EXT_LIBS)"/include
++platform-CPPFLAGS += -DPCRE2_STATIC -DLZMA_API_STATIC -I"$(EXT_LIBS)"/include
+ util-CPPFLAGS = -DLZMA_API_STATIC -I"$(EXT_LIBS)"/include
+ 
+ ifdef USE_ICU

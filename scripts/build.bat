@@ -71,6 +71,7 @@ xcopy /s "%SOURCEDIR%\cairo\include\cairo" "%R_HOME%\cairo\win64"
 :: apply local patches
 cd %R_HOME%
 patch -p1 -i %SOURCEDIR%\patches\shortcut.diff
+patch -p1 -i %SOURCEDIR%\patches\pcre2.diff
 
 :: Remove conditioning when r-devel switched to new toolchain
 if "%archive%" == "r-devel" (
