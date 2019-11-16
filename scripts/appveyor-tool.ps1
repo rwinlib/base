@@ -1,8 +1,8 @@
 $CRAN = "https://cloud.r-project.org"
 
 ### MikTex Mirror
-$MIKTEX_MIRROR = "https://miktex.org/download/win/basic-miktex-x64.exe"
-#$MIKTEX_MIRROR = "https://cloud.r-project.org/bin/windows/Rtools/basic-miktex-2.9.7152-x64.exe"
+#$MIKTEX_MIRROR = "https://miktex.org/download/win/basic-miktex-x64.exe"
+$MIKTEX_MIRROR = "https://cloud.r-project.org/bin/windows/Rtools/basic-miktex-2.9.7152-x64.exe"
 
 $PERL_MIRROR = "http://strawberryperl.com/download/5.28.1.1/strawberry-perl-5.28.1.1-64bit-portable.zip"
 #$PERL_MIRROR = "https://ftp.bit.nl/xbmc/build-deps/win32/strawberry-perl-5.28.0.1-64bit-portable.zip"
