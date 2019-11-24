@@ -5,7 +5,7 @@ environment:
 #      archive: r-release    
     - source: https://cran.r-project.org/src/base-prerelease/R-devel.tar.gz
       archive: r-devel
-#    - source: https://stat.ethz.ch/R/daily/R-patched.tar.gz
+      cran: true
     - source: https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
       archive: r-patched
       cran: true
