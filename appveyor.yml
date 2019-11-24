@@ -5,7 +5,6 @@ environment:
 #      archive: r-release    
     - source: https://cran.r-project.org/src/base-prerelease/R-devel.tar.gz
       archive: r-devel
-      cran: true
 #    - source: https://stat.ethz.ch/R/daily/R-patched.tar.gz
     - source: https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
       archive: r-patched
@@ -63,6 +62,7 @@ deploy:
     revision: "%revision%"
     on:
       branch: master
+      cran: true
 
   - provider: Environment
     name: ftp_current
