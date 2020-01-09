@@ -11,7 +11,7 @@ environment:
       cran: true
 
   PfxUri:
-    secure: z+vP1iY4odY07BV7v+yfuA2MBKQFFLGokZoefPhz22evsMT/KnwtB4NgcYNLJheI
+    secure: z+vP1iY4odY07BV7v+yfuA2MBKQFFLGokZoefPhz22ewYZAm6XZ8jsdphTFYkn7L
   CertPassword:
     secure: nwSwtaLCl6Xo5sfqKLvO30aFFGCgjGJ2GKTqS33zkJg=
   SignTool: C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe
