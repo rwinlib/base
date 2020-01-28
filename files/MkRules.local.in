@@ -29,7 +29,7 @@ EXT_LIBS = @home@/extsoft
 
 ## Ignore pedantic warnings that clutter logs
 # -Wno-unused-variable -Wno-unused-function -Wno-unused-but-set-variable
-EOPTS = -mtune=generic
+# EOPTS = -mtune=generic
 
 ## For installer
 ISDIR = C:/Program Files (x86)/Inno Setup 6
