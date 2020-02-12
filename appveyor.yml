@@ -1,14 +1,15 @@
 environment:
   matrix:
-#    - source: https://cran.r-project.org/src/base/R-3/R-3.6.0.tar.gz
-#      RTOOLS_VERSION: 35
-#      archive: r-release    
-    - source: https://cran.r-project.org/src/base-prerelease/R-devel.tar.gz
-      archive: r-devel
+    - source: https://cran.r-project.org/src/base/R-3/R-3.6.3.tar.gz
+      RTOOLS_VERSION: 35
+      archive: r-release
       cran: true
-    - source: https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
-      archive: r-patched
-      cran: true
+#    - source: https://cran.r-project.org/src/base-prerelease/R-devel.tar.gz
+#      archive: r-devel
+#      cran: true
+#    - source: https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
+#      archive: r-patched
+#      cran: true
 
   PfxUri:
     secure: z+vP1iY4odY07BV7v+yfuA2MBKQFFLGokZoefPhz22ewYZAm6XZ8jsdphTFYkn7L
@@ -38,9 +39,9 @@ after_build:
   - ps: SignFiles "${env:builddir}\${env:target}-win.exe"
   - ps: Remove-Item –path $env:KeyFile
   - cd %builddir%
-  - md5sum %target%-win.exe > md5sum.txt.%target%
+  - md5sum %target%-win.exe > md5sum.txt
   - cd %startdir%
-  - 7z a %target%-win.zip %builddir%\%target%-win.exe %builddir%\md5sum.txt.%target% %builddir%\*.log %builddir%\*.html %builddir%\SVN-REVISION.* %builddir%\README.*
+  - 7z a %target%-win.zip %builddir%\%target%-win.exe %builddir%\md5sum.txt %builddir%\*.log %builddir%\*.html %builddir%\SVN-REVISION.* %builddir%\README.*
 
 artifacts:
   - path: "%target%-win.zip"
@@ -61,12 +62,10 @@ deploy:
     archive: "%archive%"
     revision: "%revision%"
     on:
-      branch: master
       cran: true
 
   - provider: Environment
     name: ftp_current
     target: "%target%"
     on:
-      branch: master
       cran: true
