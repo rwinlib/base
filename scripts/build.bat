@@ -115,6 +115,7 @@ if %errorlevel% neq 0 (
 )
 echo make distribution complete!
 
+set R_CRAN_WEB=https://cran.rstudio.com
 make check-all > %BUILDDIR%/check.log 2>&1
 if %errorlevel% neq 0 (
 	echo ERROR: 'make check-all' failure! Inspect check.log for details.
