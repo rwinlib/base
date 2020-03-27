@@ -203,6 +203,7 @@ Function InstallMiktex {
   $env:PATH = 'C:\Program Files\MiKTeX 2.9\miktex\bin\x64;' + $env:PATH
 
   Progress "Installing CTAN packages"
+  mpm --admin --set-repository=http://mirrors.rit.edu/CTAN/systems/win32/miktex/tm/packages/
   mpm --admin --install=fancyvrb
   mpm --admin --install=inconsolata 
   mpm --admin --install=epsf
