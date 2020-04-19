@@ -1,8 +1,14 @@
-# R for Windows [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/rwinlib/base)](https://ci.appveyor.com/project/jeroen/base)
+# R 3.x for Windows (retired) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/rwinlib/base)](https://ci.appveyor.com/project/jeroen/base)
 
-> Official repository for building R on Windows
+> Scripts used to build R 3.3.x - 3.6.x on Windows
 
-This repository is used for daily builds on [appveyor](https://ci.appveyor.com/project/jeroen/base) which get deployed on [CRAN](https://cran.r-project.org/bin/windows/base/).
+This repository was used to build daily R-devel installers and official R releases of R 3.3 - 3.6. As of R 4.0 this has been replaced with the [r-windows/r-base](https://github.com/r-windows/r-base) repository.
+
+## __Important:__ retirement notice
+
+As of R version 4.0 (April 2020), we use a new set of build scripts based on rtools40 that you can find here: https://github.com/r-windows/r-base
+
+The current repository will be kept around for historical purposes (and it may still work) but it is no longer maintained.
 
 ## Local Requirements
 
