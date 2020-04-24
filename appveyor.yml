@@ -5,8 +5,10 @@ environment:
 #      archive: r-release    
     - source: https://cran.r-project.org/src/base-prerelease/R-devel.tar.gz
       archive: r-devel
-    - source: https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
-      archive: r-patched
+      RTOOLS_VERSION: 35
+#    - source: https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
+#      archive: r-patched
+#      RTOOLS_VERSION: 35
 
   PfxUri:
     secure: z+vP1iY4odY07BV7v+yfuA2MBKQFFLGokZoefPhz22ewYZAm6XZ8jsdphTFYkn7L

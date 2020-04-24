@@ -206,8 +206,6 @@ Function InstallMiktex {
   mpm --admin --install=fancyvrb
   mpm --admin --install=inconsolata 
   mpm --admin --install=epsf
-  mpm --admin --install=mptopdf
-  mpm --admin --install=url
   mpm --admin --install=preprint
 
   # Enable auto-install, just in case
