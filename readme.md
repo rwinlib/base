@@ -2,11 +2,11 @@
 
 > Scripts used to build R 3.3.x - 3.6.x on Windows
 
-This repository was used to build daily R-devel installers and official R releases of R 3.3 - 3.6. As of R 4.0 this has been replaced with the [r-windows/r-base](https://github.com/r-windows/r-base) repository.
-
 ## __Important:__ retirement notice
 
-As of R version 4.0 (April 2020), we have switched to a new build system based on rtools40, found here: https://github.com/r-windows/r-base. The current repository will be kept around for historical purposes (and it may still work) but is no longer maintained.
+This repository was used to build daily R-devel installers and official R releases of R 3.3 - 3.6. As of R version 4.0 (April 2020), we have switched to a new build system based on rtools40, found here: https://github.com/r-windows/r-base. 
+
+The current repository will be kept around for historical purposes (and it may still work) but is no longer maintained.
 
 ## Local Requirements
 
